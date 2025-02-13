@@ -21,22 +21,18 @@ class timesheet extends Model
     ];
 
     /**
-     * Get the user that owns the TimeSheet
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Get the user that owns the timesheet.
      */
-    public function user()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
     /**
-     * Get the Project that owns the TimeSheet
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Get the project that owns the timesheet.
      */
-    public function project()
+    public function projects(): BelongsTo
     {
-        return $this->belongsTo(project::class, 'project_id', 'id');
+        return $this->belongsTo(Project::class);
     }
 }

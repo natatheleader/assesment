@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class project extends Model
@@ -19,23 +20,43 @@ class project extends Model
         'status',
     ];
 
-    /**
-     * Get the user that owns the Project
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
+    public function attributeValues()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->hasMany(AttributeValues::class, 'entity_id');
+    }
+
+    public function getAttribute($key)
+    {
+        // First check if it's a regular attribute
+        $value = parent::getAttribute($key);
+        
+        if ($value !== null) {
+            return $value;
+        }
+
+        // Then check if it's a dynamic attribute
+        $attributeValue = $this->attributeValues()
+            ->whereHas('attribute', function ($query) use ($key) {
+                $query->where('name', $key);
+            })
+            ->first();
+
+        return $attributeValue ? $attributeValue->value : null;
     }
 
     /**
-     * Get the timesheet associated with the Project
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * The users that belong to the project.
      */
-    public function timeSheet()
+    public function users(): BelongsToMany
     {
-        return $this->hasOne(timeSheet::class);
+        return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Get the timesheet for the project.
+     */
+    public function timesheets(): HasMany
+    {
+        return $this->hasMany(Timesheet::class);
     }
 }
