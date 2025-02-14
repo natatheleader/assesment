@@ -2,7 +2,7 @@
 <div align="center">
     <p align="center">
         <a href="http://nestjs.com/" target="blank"><img src="https://laravel.com/img/logotype.min.svg" width="200" alt="Nest Logo" /></a>
-        <img src="https://i.ibb.co/Z1fGw5c/Brand.png" width="200" alt="Redemption Logo" />
+        <!-- <img src="https://i.ibb.co/Z1fGw5c/Brand.png" width="200" alt="Redemption Logo" /> -->
     </p>
     <h1>Assesment Result for AStudio / EAV Implementation Via Laravel</h1>
     <br />
@@ -151,8 +151,8 @@ Here is the list of Routes Available for you
 |--------------------------------------------------------------------------
 |
 | Authentication:
-| POST   /api/register
-| POST   /api/login
+| POST   /api/auth/register
+| POST   /api/auth/login
 | POST   /api/logout
 | GET    /api/user
 |
