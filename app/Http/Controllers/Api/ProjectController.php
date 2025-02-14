@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Attribute;
-use App\Models\AttributeValue;
+use App\Models\AttributeValues;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ProjectResource;
@@ -105,7 +105,7 @@ class ProjectController extends BaseController
                         throw new \Exception("Invalid value for attribute: {$attributeName}");
                     }
 
-                    AttributeValue::create([
+                    AttributeValues::create([
                         'attribute_id' => $attribute->id,
                         'entity_id' => $project->id,
                         'value' => $value
@@ -165,7 +165,7 @@ class ProjectController extends BaseController
                         throw new \Exception("Invalid value for attribute: {$attributeName}");
                     }
 
-                    AttributeValue::updateOrCreate(
+                    AttributeValues::updateOrCreate(
                         [
                             'attribute_id' => $attribute->id,
                             'entity_id' => $project->id

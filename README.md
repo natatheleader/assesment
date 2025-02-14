@@ -1,66 +1,270 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
+    <p align="center">
+        <a href="http://nestjs.com/" target="blank"><img src="https://laravel.com/img/logotype.min.svg" width="200" alt="Nest Logo" /></a>
+        <img src="https://i.ibb.co/Z1fGw5c/Brand.png" width="200" alt="Redemption Logo" />
+    </p>
+    <h1>Assesment Result for AStudio / EAV Implementation Via Laravel</h1>
+    <br />
+    
+    This is a Laravel Project for a Preoject management System that have EAV and Filter.
+</div>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Contents <!-- omit in toc -->
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Installation](#installation)
+- [Routes](#routes)
+- [Test Case](#test)
+- [License] ()
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<!--lint enable awesome-list-item-->
+## Installation
+First make sure that you install Laravel. then Clone the project to the desired directory
 
-## Learning Laravel
+```bash
+git clone https://github.com/natatheleader/assesment.git
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+after cloaning the project run this command inside the folder.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+Composer install 
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+This will install all the dependancies. once you dounloaded all the modules the project is now ready to start using. but to start using you need to setup your Environment configuration.
 
-## Laravel Sponsors
+```bash
+cp .env.example .env
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+this will copy and paste the .env file into your directory and then you can setup all the variables to make your project work. all the variables are disscussed in detail bellow:
 
-### Premium Partners
+```config
+APP_NAME=
+APP_ENV=
+APP_KEY=
+APP_DEBUG=true
+APP_TIMEZONE=UTC
+APP_URL=http://localhost
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+APP_LOCALE=en
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=en_US
 
-## Contributing
+APP_MAINTENANCE_DRIVER=file
+# APP_MAINTENANCE_STORE=database
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+PHP_CLI_SERVER_WORKERS=4
 
-## Code of Conduct
+BCRYPT_ROUNDS=12
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
 
-## Security Vulnerabilities
+DB_CONNECTION=
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+
+CACHE_STORE=database
+CACHE_PREFIX=
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=log
+MAIL_SCHEME=null
+MAIL_HOST=127.0.0.1
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+VITE_APP_NAME="${APP_NAME}"
+```
+
+#### DATABSE_URL
+Set the url of your database here. it looks someting like this:
+```config
+DB_CONNECTION=(Database)
+DB_HOST=(Url to your DB)
+DB_PORT=(The Port)
+DB_DATABASE=(The name of your DB)
+DB_USERNAME=(The username of your DB)
+DB_PASSWORD=(The password of your DB)
+```
+
+After setting up the configuration run
+
+```bash
+php artisan key:generate
+```
+
+```bash
+php artisan migrate
+```
+
+```bash
+php artisan serve
+```
+
+To seed the database run
+
+```bash
+php artisan db:seed
+```
+
+## Routes
+
+Here is the list of Routes Available for you
+
+```bash
+/*
+|--------------------------------------------------------------------------
+| Route List Summary
+|--------------------------------------------------------------------------
+|
+| Authentication:
+| POST   /api/register
+| POST   /api/login
+| POST   /api/logout
+| GET    /api/user
+|
+| Users:
+| GET    /api/users
+| POST   /api/users
+| GET    /api/users/{id}
+| PUT    /api/users/{id}
+| DELETE /api/users/{id}
+|
+| Projects:
+| GET    /api/projects
+| POST   /api/projects
+| GET    /api/projects/{id}
+| PUT    /api/projects/{id}
+| DELETE /api/projects/{id}
+| GET    /api/projects/{id}/users
+| POST   /api/projects/{id}/users
+| DELETE /api/projects/{id}/users/{user_id}
+|
+| Timesheets:
+| GET    /api/timesheets
+| POST   /api/timesheets
+| GET    /api/timesheets/{id}
+| PUT    /api/timesheets/{id}
+| DELETE /api/timesheets/{id}
+| GET    /api/projects/{id}/timesheets
+| GET    /api/users/{id}/timesheets
+|
+| Attributes (EAV):
+| GET    /api/attributes
+| POST   /api/attributes
+| GET    /api/attributes/{id}
+| PUT    /api/attributes/{id}
+| DELETE /api/attributes/{id}
+| GET    /api/projects/{id}/attributes
+| POST   /api/projects/{id}/attributes
+```
+
+Some Example Routs are (for EAV)
+
+```bash
+# Get all projects
+GET /api/projects
+
+# Filter by project name
+GET /api/projects?filters[name]=Website Redesign
+
+# Filter by status
+GET /api/projects?filters[status]=active
+
+# Filter by department (EAV)
+GET /api/projects?filters[department]=IT
+
+# Filter by budget greater than
+GET /api/projects?filters[budget][operator]=>&filters[budget][value]=20000
+
+# Filter by priority
+GET /api/projects?filters[priority]=High
+
+# Filter by date range
+GET /api/projects?filters[start_date][operator]=>&filters[start_date][value]=2024-02-01
+
+# Combine regular and EAV filters
+GET /api/projects?filters[status]=active&filters[department]=IT
+
+# Multiple EAV filters
+GET /api/projects?filters[department]=IT&filters[priority]=High
+
+# Complex filter combination
+GET /api/projects?filters[status]=active&filters[budget][operator]=>&filters[budget][value]=30000&filters[department]=IT
+
+# Search project names
+GET /api/projects?filters[name][operator]=LIKE&filters[name][value]=Website
+
+# Search in departments
+GET /api/projects?filters[department][operator]=LIKE&filters[department][value]=Mark
+```
+
+If you seed the data you can easily access these routs
+
+Notes:
+
+- All URLs assume your Laravel is running on localhost:8000
+- Remember to URL encode special characters if testing directly in the browser
+- The token should be included in all requests
+- All date values should be in YYYY-MM-DD format
+- Valid operators are: =, >, <, LIKE (if not specified, = is used by default)
+
+## Test
+
+To run tests first
+
+```bash
+cp .env .env.testing
+```
+
+this will create a new environment file so you can use a test database which is different from your main Database
+
+After that configure your new environment file and run
+
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test file
+php artisan test --filter ProjectTest
+
+# Run specific test method
+php artisan test --filter ProjectTest::it_can_filter_projects_by_eav_attributes
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[MIT](LICENSE)
