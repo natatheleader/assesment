@@ -236,11 +236,521 @@ If you seed the data you can easily access these routs
 
 Notes:
 
-- All URLs assume your Laravel is running on localhost:8000
+- All URLs except Register and Login assume your using Token (Barrer) for authentication
 - Remember to URL encode special characters if testing directly in the browser
 - The token should be included in all requests
 - All date values should be in YYYY-MM-DD format
 - Valid operators are: =, >, <, LIKE (if not specified, = is used by default)
+
+some response examples
+
+-Login
+```bash
+#Input
+{
+    "email": "admin@example.com",
+    "password": "password123"
+}
+#Output
+{
+    "user": {
+        "id": 1,
+        "name": "Admin",
+        "email": "admin@example.com",
+        "email_verified_at": null,
+        "created_at": "2025-02-14T11:08:46.000000Z",
+        "updated_at": "2025-02-14T11:08:46.000000Z"
+    },
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGJmMGM3ODQ0NTEyYjlkYzU2MDIyNWUwZjVkZGU5ZmI4MWJlYmI0OWVlYzUzMzFhNjg1NWM3MjU4MGY2N2Y4YzFiNTk4NmMyZWNmNDcyYjMiLCJpYXQiOjE3Mzk1MzE3ODQuNjcyNDQ5LCJuYmYiOjE3Mzk1MzE3ODQuNjcyNDUzLCJleHAiOjE3NzEwNjc3ODQuMDAxMTMsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.S4wkuVIAj7V9BwwFLtlEIeEfQuV6Ztzu8rUzWE0G6vHANrXPwiZaxfghyYYVbh3NVOU09kRB1DOs20HYQD1-S-IySWDPZGqOl9Cfp9Wao0wyWQKGMrwKUAYPO-k0jTC365tF9OR-GF-Vk4pjPFUvTqs37jzqL7vYHvLm1OMSZEbLuseU-aUEa0XmgnA4VWrcgOzNkrtujAZEELO5QqKa2EijxsacCbLiCDRqY9iFZSY2qngxDRIP3ABoJAc95TA_Zyfs8OudWqdm23U7eB1M2F1QkgQ0nmIUICnpG7YOzEJLRp4CRgSH0o8cKBRKXgJ2P5diZtIO2LTDkebIkpNGiaaNg722NJki6hVruBzGcYZAccciUSXIBIldTbfWaeUzLhGAKH_ML6rds8FEXtpHCHzZicLFoAMwlnN3piUI6C2r4iQBnEcBE1OuNWnT7AenSvSxLuEAE26XBdu1cYBCwW23Mh3BT-_uIj9xjGcRAZMWK28LMIxHHcxJDwJNmFYOQCn2g0-4Ut_awsyLN3avkvh9Z7tjA5evnzIxaUyJhWyc2iI5WPrPKBiXeAsxlbadZJkfBX_jIgiY-HAic5FI-41TNaYzyYbFbwL9mTEyGozribVIbhghqqHNNyZbPPNUehhqzQMeHVeJ2F1SIobCWUZ0L8Xo8denHlxxPjJRMqc"
+}
+```
+
+-Others
+```bash
+#Link
+Get http://localhost:8000/api/users
+#Output
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Admin",
+            "email": "admin@example.com",
+            "email_verified_at": null,
+            "created_at": "2025-02-14T11:08:46.000000Z",
+            "updated_at": "2025-02-14T11:08:46.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "John Doe",
+            "email": "john@example.com",
+            "email_verified_at": null,
+            "created_at": "2025-02-14T11:08:47.000000Z",
+            "updated_at": "2025-02-14T11:08:47.000000Z"
+        },
+        {
+            "id": 3,
+            "name": "Jane Smith",
+            "email": "jane@example.com",
+            "email_verified_at": null,
+            "created_at": "2025-02-14T11:08:47.000000Z",
+            "updated_at": "2025-02-14T11:08:47.000000Z"
+        }
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/users?page=1",
+        "last": "http://localhost:8000/api/users?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://localhost:8000/api/users?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http://localhost:8000/api/users",
+        "per_page": 10,
+        "to": 3,
+        "total": 3
+    }
+}
+
+#Link
+GET http://localhost:8000/api/projects
+
+#Output
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Website Redesign",
+            "status": "active",
+            "created_at": "2025-02-14T11:08:47.000000Z",
+            "updated_at": "2025-02-14T11:08:47.000000Z",
+            "attribute_values": [
+                {
+                    "id": 1,
+                    "attribute_id": 1,
+                    "entity_id": 1,
+                    "value": "IT",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 1,
+                        "name": "department",
+                        "type": "text",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 2,
+                    "attribute_id": 2,
+                    "entity_id": 1,
+                    "value": "2024-02-01",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 2,
+                        "name": "start_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 3,
+                    "attribute_id": 3,
+                    "entity_id": 1,
+                    "value": "2024-05-01",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 3,
+                        "name": "end_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 4,
+                    "attribute_id": 4,
+                    "entity_id": 1,
+                    "value": "50000",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 4,
+                        "name": "budget",
+                        "type": "number",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 5,
+                    "attribute_id": 5,
+                    "entity_id": 1,
+                    "value": "High",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 5,
+                        "name": "priority",
+                        "type": "select",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Marketing Campaign",
+            "status": "pending",
+            "created_at": "2025-02-14T11:08:47.000000Z",
+            "updated_at": "2025-02-14T11:08:47.000000Z",
+            "attribute_values": [
+                {
+                    "id": 6,
+                    "attribute_id": 1,
+                    "entity_id": 2,
+                    "value": "Marketing",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 1,
+                        "name": "department",
+                        "type": "text",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 7,
+                    "attribute_id": 2,
+                    "entity_id": 2,
+                    "value": "2024-03-01",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 2,
+                        "name": "start_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 8,
+                    "attribute_id": 3,
+                    "entity_id": 2,
+                    "value": "2024-06-01",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 3,
+                        "name": "end_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 9,
+                    "attribute_id": 4,
+                    "entity_id": 2,
+                    "value": "30000",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 4,
+                        "name": "budget",
+                        "type": "number",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 10,
+                    "attribute_id": 5,
+                    "entity_id": 2,
+                    "value": "Medium",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 5,
+                        "name": "priority",
+                        "type": "select",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Sales Training",
+            "status": "completed",
+            "created_at": "2025-02-14T11:08:47.000000Z",
+            "updated_at": "2025-02-14T11:08:47.000000Z",
+            "attribute_values": [
+                {
+                    "id": 11,
+                    "attribute_id": 1,
+                    "entity_id": 3,
+                    "value": "Sales",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 1,
+                        "name": "department",
+                        "type": "text",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 12,
+                    "attribute_id": 2,
+                    "entity_id": 3,
+                    "value": "2024-01-01",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 2,
+                        "name": "start_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 13,
+                    "attribute_id": 3,
+                    "entity_id": 3,
+                    "value": "2024-01-31",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 3,
+                        "name": "end_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 14,
+                    "attribute_id": 4,
+                    "entity_id": 3,
+                    "value": "15000",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 4,
+                        "name": "budget",
+                        "type": "number",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 15,
+                    "attribute_id": 5,
+                    "entity_id": 3,
+                    "value": "Low",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 5,
+                        "name": "priority",
+                        "type": "select",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                }
+            ]
+        }
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/projects?page=1",
+        "last": "http://localhost:8000/api/projects?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://localhost:8000/api/projects?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http://localhost:8000/api/projects",
+        "per_page": 10,
+        "to": 3,
+        "total": 3
+    }
+}
+
+#Link
+GET localhost:8000/api/projects?filters[name]=Website Redesign
+
+#output
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Website Redesign",
+            "status": "active",
+            "created_at": "2025-02-14T11:08:47.000000Z",
+            "updated_at": "2025-02-14T11:08:47.000000Z",
+            "attribute_values": [
+                {
+                    "id": 1,
+                    "attribute_id": 1,
+                    "entity_id": 1,
+                    "value": "IT",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 1,
+                        "name": "department",
+                        "type": "text",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 2,
+                    "attribute_id": 2,
+                    "entity_id": 1,
+                    "value": "2024-02-01",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 2,
+                        "name": "start_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 3,
+                    "attribute_id": 3,
+                    "entity_id": 1,
+                    "value": "2024-05-01",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 3,
+                        "name": "end_date",
+                        "type": "date",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 4,
+                    "attribute_id": 4,
+                    "entity_id": 1,
+                    "value": "50000",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 4,
+                        "name": "budget",
+                        "type": "number",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                },
+                {
+                    "id": 5,
+                    "attribute_id": 5,
+                    "entity_id": 1,
+                    "value": "High",
+                    "created_at": "2025-02-14T11:08:47.000000Z",
+                    "updated_at": "2025-02-14T11:08:47.000000Z",
+                    "attribute": {
+                        "id": 5,
+                        "name": "priority",
+                        "type": "select",
+                        "created_at": "2025-02-14T11:08:47.000000Z",
+                        "updated_at": "2025-02-14T11:08:47.000000Z"
+                    }
+                }
+            ]
+        }
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/projects?page=1",
+        "last": "http://localhost:8000/api/projects?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://localhost:8000/api/projects?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http://localhost:8000/api/projects",
+        "per_page": 10,
+        "to": 1,
+        "total": 1
+    }
+}
+```
+
+These are just some Examples to show the structure of the response. Your results follow the same structure.
 
 ## Test
 
